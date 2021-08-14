@@ -2,7 +2,20 @@ import { fetchUtils } from "react-admin";
 import { stringify } from "query-string";
 
 const apiUrl = "http://api.football-data.org/v2/";
-const httpClient = fetchUtils.fetchJson();
+
+const fetchJson = (url, options = {}) => {
+  if (!options.headers) {
+    options.headers = new Headers({
+      Accept: "application/json",
+      "X-Auth-Token": process.env.API_KEY,
+    });
+  }
+
+  return fetchUtils.fetchJson(url, options);
+};
+
+// const httpClient = fetchUtils.fetchJson();
+const httpClient = fetchJson;
 
 export default {
   getList: (resource, params) => {
@@ -15,10 +28,13 @@ export default {
     };
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
 
-    return httpClient(url).then(({ headers, json }) => ({
-      data: json,
-      total: parseInt(headers.get("content-range").split("/").pop(), 10),
-    }));
+    return httpClient(url).then(({ headers, json }) => {
+      // debugger;
+      return {
+        data: json.competitions,
+        total: json.count,
+      };
+    });
   },
 
   getOne: (resource, params) =>

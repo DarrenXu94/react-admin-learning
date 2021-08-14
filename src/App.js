@@ -7,26 +7,26 @@ import PostIcon from "@material-ui/icons/Book";
 import UserIcon from "@material-ui/icons/Group";
 import Dashboard from "./Dashboard";
 import authProvider from "./authProvider";
-// import dataProvider from "./dataProvider";
+import dataProvider from "./dataProvider";
 
 // const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
 
 import simpleRestProvider from "ra-data-simple-rest";
 
-const fetchJson = (url, options = {}) => {
-  if (!options.headers) {
-    options.headers = new Headers({
-      Accept: "application/json",
-      "X-Auth-Token": process.env.API_KEY,
-    });
-  }
+// const fetchJson = (url, options = {}) => {
+//   if (!options.headers) {
+//     options.headers = new Headers({
+//       Accept: "application/json",
+//       "X-Auth-Token": process.env.API_KEY,
+//     });
+//   }
 
-  return fetchUtils.fetchJson(url, options);
-};
-const dataProvider = simpleRestProvider(
-  "https://api.football-data.org/v2/",
-  fetchJson
-);
+//   return fetchUtils.fetchJson(url, options);
+// };
+// const dataProvider = simpleRestProvider(
+//   "https://api.football-data.org/v2/",
+//   fetchJson
+// );
 
 const App = () => (
   <Admin
