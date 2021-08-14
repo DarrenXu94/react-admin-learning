@@ -8,7 +8,7 @@ const fetchJson = (url, options = {}) => {
   if (!options.headers) {
     options.headers = new Headers({
       Accept: "application/json",
-      "X-Auth-Token": REACT_APP_API_KEY,
+      "X-Auth-Token": process.env.REACT_APP_API_KEY,
     });
   }
 
