@@ -15,13 +15,16 @@ import simpleRestProvider from "ra-data-simple-rest";
 
 const fetchJson = (url, options = {}) => {
   if (!options.headers) {
-    options.headers = new Headers({ Accept: "application/json" });
+    options.headers = new Headers({
+      Accept: "application/json",
+      "X-Auth-Token": process.env.API_KEY,
+    });
   }
 
   return fetchUtils.fetchJson(url, options);
 };
 const dataProvider = simpleRestProvider(
-  "https://football-data.vercel.app/",
+  "http://api.football-data.org/v2/",
   fetchJson
 );
 
