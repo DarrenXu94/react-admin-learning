@@ -1,5 +1,6 @@
 import { fetchUtils } from "react-admin";
 import { stringify } from "query-string";
+// require("dotenv").config();
 
 const apiUrl = "https://api.football-data.org/v2/";
 
@@ -7,9 +8,10 @@ const fetchJson = (url, options = {}) => {
   if (!options.headers) {
     options.headers = new Headers({
       Accept: "application/json",
-      "X-Auth-Token": process.env.API_KEY,
+      "X-Auth-Token": "",
     });
   }
+  console.log(process.env.API_KEY, "API KEY");
 
   return fetchUtils.fetchJson(url, options);
 };
