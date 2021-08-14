@@ -11,7 +11,8 @@ const fetchJson = (url, options = {}) => {
       "X-Auth-Token": "",
     });
   }
-  console.log(process.env.NEXT_PUBLIC_API_KEY, "API KEY");
+  console.log(process.env.REACT_APP_API_KEY, "API KEY");
+  console.log(process.env, "process env");
 
   return fetchUtils.fetchJson(url, options);
 };
