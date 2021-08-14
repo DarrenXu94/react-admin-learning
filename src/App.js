@@ -24,7 +24,7 @@ const fetchJson = (url, options = {}) => {
   return fetchUtils.fetchJson(url, options);
 };
 const dataProvider = simpleRestProvider(
-  "http://api.football-data.org/v2/",
+  "https://api.football-data.org/v2/",
   fetchJson
 );
 
@@ -34,7 +34,7 @@ const App = () => (
     authProvider={authProvider}
     dataProvider={dataProvider}
   >
-    <Resource name="test" list={ListGuesser} />
+    <Resource name="competitions" list={ListGuesser} />
     {/* <Resource
       name="posts"
       list={PostList}
