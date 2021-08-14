@@ -1,7 +1,7 @@
 import { fetchUtils } from "react-admin";
 import { stringify } from "query-string";
 
-const apiUrl = "http://api.football-data.org/v2/";
+const apiUrl = "https://api.football-data.org/v2/";
 
 const fetchJson = (url, options = {}) => {
   if (!options.headers) {
