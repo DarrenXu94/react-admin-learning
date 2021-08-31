@@ -20,22 +20,55 @@ const httpClient = fetchJson;
 
 export default {
   getList: (resource, params) => {
-    const { page, perPage } = params.pagination;
-    const { field, order } = params.sort;
-    const query = {
-      sort: JSON.stringify([field, order]),
-      range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
-      filter: JSON.stringify(params.filter),
-    };
-    const url = `${apiUrl}/${resource}?${stringify(query)}`;
+    console.log({ resource, params });
+    // const { page, perPage } = params.pagination;
+    // const { field, order } = params.sort;
+    // const query = {
+    //   sort: JSON.stringify([field, order]),
+    //   range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
+    //   filter: JSON.stringify(params.filter),
+    // };
+    // const url = `${apiUrl}/${resource}?${stringify(query)}`;
+    switch (resource) {
+      case "competitions": {
+        const url = `${apiUrl}/${resource}`;
 
-    return httpClient(url).then(({ headers, json }) => {
-      // debugger;
-      return {
-        data: json.competitions,
-        total: json.count,
-      };
-    });
+        return httpClient(url).then(({ headers, json }) => {
+          // debugger;
+
+          return {
+            data: json.competitions,
+            total: json.count,
+          };
+        });
+      }
+
+      case "teams": {
+        const url = `${apiUrl}/competitions/${params.id}/teams`;
+
+        return httpClient(url).then(({ headers, json }) => {
+          // debugger;
+
+          return {
+            data: json.teams,
+            total: json.count,
+          };
+        });
+      }
+
+      case "Premier League Team": {
+        const url = `${apiUrl}/competitions/2021/teams`;
+
+        return httpClient(url).then(({ headers, json }) => {
+          // debugger;
+
+          return {
+            data: json.teams,
+            total: json.count,
+          };
+        });
+      }
+    }
   },
 
   getOne: (resource, params) =>

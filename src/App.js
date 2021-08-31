@@ -8,6 +8,8 @@ import UserIcon from "@material-ui/icons/Group";
 import Dashboard from "./Dashboard";
 import authProvider from "./authProvider";
 import dataProvider from "./dataProvider";
+import CompetitionList from "./Resources/Competitions/CompetitionList";
+import CompetitionShow from "./Resources/Competitions/CompetitionShow";
 
 // const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
 
@@ -34,7 +36,16 @@ const App = () => (
     authProvider={authProvider}
     dataProvider={dataProvider}
   >
-    <Resource name="competitions" list={ListGuesser} />
+    <Resource
+      name="competitions"
+      list={CompetitionList}
+      show={CompetitionShow}
+    />
+
+    <Resource name="Premier League Team" list={ListGuesser} />
+
+    {/* <Resource name="teams" list={ListGuesser} /> */}
+    {/* <Resource name="teams/:id" list={ListGuesser} /> */}
     {/* <Resource
       name="posts"
       list={PostList}
